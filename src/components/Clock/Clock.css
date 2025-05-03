@@ -1,0 +1,313 @@
+/* Clock container styling */
+.clock-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Clock sizing with responsiveness */
+.clock {
+  position: relative;
+  width: min(500px, 90vw);
+  height: min(500px, 90vw);
+  min-width: 200px;
+  min-height: 200px;
+  border-radius: 50%;
+  transition: all 0.5s ease;
+}
+
+/* Light theme styling */
+.clock-container.light .clock {
+  background: linear-gradient(145deg, #f5f5f7, #ffffff);
+  box-shadow: 
+    -12px -12px 24px rgba(255, 255, 255, 0.8),
+    12px 12px 24px rgba(0, 0, 0, 0.1),
+    inset -2px -2px 8px rgba(255, 255, 255, 0.7),
+    inset 2px 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark theme styling */
+.clock-container.dark .clock {
+  background: linear-gradient(145deg, #1c1c1e, #2c2c2e);
+  box-shadow: 
+    -12px -12px 24px rgba(30, 30, 32, 0.5),
+    12px 12px 24px rgba(0, 0, 0, 0.8),
+    inset -2px -2px 8px rgba(40, 40, 42, 0.3),
+    inset 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Clock face styling */
+.clock-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Outer rim of the clock */
+.clock-outer-rim {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.light .clock-outer-rim {
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.5), rgba(245, 245, 247, 0.5));
+}
+
+.dark .clock-outer-rim {
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(145deg, rgba(44, 44, 46, 0.5), rgba(28, 28, 30, 0.5));
+}
+
+/* Inner face of the clock */
+.clock-inner-face {
+  position: absolute;
+  width: 93%;
+  height: 93%;
+  border-radius: 50%;
+  z-index: 2;
+  backdrop-filter: blur(2px);
+  transition: all 0.5s ease;
+}
+
+.light .clock-inner-face {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    inset 0 0 20px rgba(0, 0, 0, 0.05),
+    0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.dark .clock-inner-face {
+  background: rgba(44, 44, 46, 0.9);
+  box-shadow: 
+    inset 0 0 20px rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Markers container */
+.markers-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+/* Hour markers */
+.hour-marker {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  transform-origin: center;
+}
+
+.hour-marker-line {
+  position: absolute;
+  top: 6%;
+  width: 4px;
+  height: 15px;
+  border-radius: 2px;
+  transition: all 0.5s ease;
+}
+
+.light .hour-marker-line {
+  background-color: #333;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.dark .hour-marker-line {
+  background-color: #f5f5f7;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Hour numbers */
+.hour-number {
+  position: absolute;
+  top: 12%;
+  font-size: clamp(16px, 4vw, 24px);
+  font-weight: 600;
+  user-select: none;
+  transition: all 0.5s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.light .hour-number {
+  color: #333;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.dark .hour-number {
+  color: #f5f5f7;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Minute markers */
+.minute-marker {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  transform-origin: center;
+}
+
+.minute-marker-line {
+  position: absolute;
+  top: 8%;
+  width: 2px;
+  height: 8px;
+  border-radius: 1px;
+  transition: all 0.5s ease;
+}
+
+.light .minute-marker-line {
+  background-color: #999;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.dark .minute-marker-line {
+  background-color: #999;
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Clock hands styling */
+.clock-hands {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+/* Hour hand */
+.hour-hand {
+  position: absolute;
+  width: 8px;
+  height: 30%;
+  top: 20%;
+  left: calc(50% - 4px);
+  transform-origin: 50% 100%;
+  border-radius: 4px 4px 2px 2px;
+  transition: transform 0.5s cubic-bezier(0.4, 2.1, 0.4, 0.9);
+}
+
+.light .hour-hand {
+  background: linear-gradient(to top, #333, #555);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.dark .hour-hand {
+  background: linear-gradient(to top, #f5f5f7, #ccc);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+/* Minute hand */
+.minute-hand {
+  position: absolute;
+  width: 6px;
+  height: 38%;
+  top: 12%;
+  left: calc(50% - 3px);
+  transform-origin: 50% 100%;
+  border-radius: 3px 3px 1.5px 1.5px;
+  transition: transform 0.5s cubic-bezier(0.4, 2.1, 0.4, 0.9);
+}
+
+.light .minute-hand {
+  background: linear-gradient(to top, #666, #888);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.dark .minute-hand {
+  background: linear-gradient(to top, #ccc, #999);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Second hand */
+.second-hand {
+  position: absolute;
+  width: 2px;
+  height: 45%;
+  top: 5%;
+  left: calc(50% - 1px);
+  transform-origin: 50% 100%;
+  border-radius: 1px;
+  transition: transform 0.2s cubic-bezier(0.4, 2.1, 0.4, 0.9);
+}
+
+.light .second-hand {
+  background: linear-gradient(to top, #ff5252, #ff7070);
+  box-shadow: 0 0 3px rgba(255, 82, 82, 0.3);
+}
+
+.dark .second-hand {
+  background: linear-gradient(to top, #ff6b6b, #ff8787);
+  box-shadow: 0 0 3px rgba(255, 107, 107, 0.3);
+}
+
+/* Central pivot */
+.center-pivot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+
+.light .center-pivot {
+  background: linear-gradient(145deg, #666, #444);
+  box-shadow: 
+    0 0 5px rgba(0, 0, 0, 0.2),
+    inset 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.dark .center-pivot {
+  background: linear-gradient(145deg, #f5f5f7, #ccc);
+  box-shadow: 
+    0 0 5px rgba(0, 0, 0, 0.4),
+    inset 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+.center-pivot-inner {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.light .center-pivot-inner {
+  background: linear-gradient(145deg, #ff5252, #ff7070);
+  box-shadow: 0 0 3px rgba(255, 82, 82, 0.3);
+}
+
+.dark .center-pivot-inner {
+  background: linear-gradient(145deg, #ff6b6b, #ff8787);
+  box-shadow: 0 0 3px rgba(255, 107, 107, 0.3);
+}
+
+/* Animation for central pivot on hover */
+.clock:hover .center-pivot-inner {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+}
+
+/* Smooth transitions for theme changes */
+.clock *,
+.clock-container * {
+  transition-property: background-color, border-color, color, box-shadow, transform, filter;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+}
